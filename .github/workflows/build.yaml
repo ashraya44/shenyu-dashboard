@@ -14,13 +14,13 @@ jobs:
   create_scan_in_IR_Portal:
     runs-on: ubuntu-latest
     outputs:
-      scan_id: ${{ steps.vb-scan.outputs.scan_id }}
-      ecr_username: ${{ steps.vb-scan.outputs.username }}
-      ecr_token: ${{ steps.vb-scan.outputs.password }}
-      ecr_region: ${{ steps.vb-scan.outputs.region }}
-      ecr_id: ${{ steps.vb-scan.outputs.registry_id }}
+      scan_id: ${{ steps.parseResponse.outputs.scan_id }}
+      ecr_username: ${{ steps.ecr_details.outputs.username }}
+      ecr_token: ${{ steps.ecr_details.outputs.password }}
+      ecr_region: ${{ steps.ecr_details.outputs.region }}
+      ecr_id: ${{ steps.ecr_details.outputs.registry_id }}
     steps:
-      - uses: ashrayat9/ir-action@v0.0.8
+      - uses: ashrayat9/ir-action@v0.0.9
         with:
           VB_API_URL: 'https://app.dev.invisirisk.com'
           VB_API_KEY: ${{ secrets.VB_API_KEY }}
