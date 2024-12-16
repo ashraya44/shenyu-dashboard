@@ -15,12 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       scan_id: ${{ steps.vb-scan.outputs.scan_id }}
-      ecr_username: ${{ steps.vb-scan.outputs.username }}
+      ecr_username: ${{ steps.vb-scan.outputs.ecr_username }}
       ecr_token: ${{ steps.vb-scan.outputs.password }}
       ecr_region: ${{ steps.vb-scan.outputs.region }}
       ecr_id: ${{ steps.vb-scan.outputs.registry_id }}
     steps:
-      - uses: ashrayat9/ir-action@v0.0.9
+      - uses: ashrayat9/ir-action@v0.0.10
         id: vb-scan
         with:
           VB_API_URL: 'https://app.dev.invisirisk.com'
