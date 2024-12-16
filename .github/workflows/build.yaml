@@ -20,7 +20,7 @@ jobs:
       ecr_region: ${{ steps.vb-scan.outputs.region }}
       ecr_id: ${{ steps.vb-scan.outputs.registry_id }}
     steps:
-      - uses: ashrayat9/ir-action@v0.0.14
+      - uses: ashrayat9/ir-action@v0.0.15
         id: vb-scan
         with:
           VB_API_URL: 'https://app.dev.invisirisk.com'
