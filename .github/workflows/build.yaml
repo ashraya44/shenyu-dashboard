@@ -16,9 +16,9 @@ jobs:
     outputs:
       scan_id: ${{ steps.vb-scan.outputs.scan_id }}
       username: ${{ steps.vb-scan.outputs.username }}
-      token: ${{ steps.vb-scan.outputs.token }}
-      ecr_region: ${{ steps.vb-scan.outputs.region }}
-      ecr_id: ${{ steps.vb-scan.outputs.registry_id }}
+      password: ${{ steps.vb-scan.outputs.password }}
+      # ecr_region: ${{ steps.vb-scan.outputs.region }}
+      # ecr_id: ${{ steps.vb-scan.outputs.registry_id }}
     steps:
       - uses: ashrayat9/ir-action@v0.0.19
         id: vb-scan
@@ -31,8 +31,6 @@ jobs:
           echo "Scan ID: ${{ steps.vb-scan.outputs.scan_id }}"
           echo "Username: ${{ steps.vb-scan.outputs.username }}"
           echo "Password: ${{ steps.vb-scan.outputs.password }}"
-          echo "Region: ${{ steps.vb-scan.outputs.region }}"
-          echo "Registry ID: ${{ steps.vb-scan.outputs.registry_id }}"
           
   start_proxy_and_build:
     runs-on: ubuntu-latest
@@ -42,7 +40,7 @@ jobs:
         image: 282904853176.dkr.ecr.us-west-2.amazonaws.com/invisirisk/pse-proxy:latest
         credentials:
           username: ${{needs.create_scan_in_IR_Portal.outputs.username}}
-          password: ${{needs.create_scan_in_IR_Portal.outputs.token}}
+          password: ${{needs.create_scan_in_IR_Portal.outputs.password}}
         env:
           PSE_DEBUG_FLAG: --alsologtostderr
           POLICY_LOG: t
